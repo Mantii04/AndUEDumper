@@ -21,6 +21,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          # These flags disable the specific warnings that are causing the errors
-          cmake -DCMAKE_CXX_FLAGS="-I../deps/KittyMemoryEx -Wno-error=class-memaccess -Wno-error=unused-command-line-argument" ..
-          make
+          # Configure without extra flags to let the compiler pass its test
+          cmake -I../deps/KittyMemoryEx ..
+          # Apply the ignore-warning flag only during the make process
+          make CXXFLAGS="-Wno-error=class-memaccess"
