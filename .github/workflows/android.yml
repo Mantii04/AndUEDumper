@@ -21,7 +21,6 @@ jobs:
         run: |
           mkdir build
           cd build
-          # Configure without extra flags to let the compiler pass its test
-          cmake -I../deps/KittyMemoryEx ..
-          # Apply the ignore-warning flag only during the make process
-          make CXXFLAGS="-Wno-error=class-memaccess"
+          # Use -D to pass flags correctly to CMake
+          cmake -DCMAKE_CXX_FLAGS="-I../deps/KittyMemoryEx -Wno-error=class-memaccess" ..
+          make
