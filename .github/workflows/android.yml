@@ -19,7 +19,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+        # We navigate into the subfolder first
+        run: chmod +x AndUEDumper/gradlew
 
       - name: Build with Gradle
-        run: ./gradlew assembleDebug
+        # We navigate into the subfolder to run the build
+        run: ./AndUEDumper/gradlew assembleDebug
